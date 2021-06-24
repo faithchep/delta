@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Delta app</title>
+</head>
+<body>
+<ul id="dataElements"></ul>
+
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+  const App = {};
+
+  function loadManifest(){
+    return $.ajax({
+      url: 'manifest.webapp',
+      dataType: 'json'
+    }).done(function(data){
+      App.manifest = data;
+      App.baseUrl = App.manifest.activities.dhis.href;
+    });
+  }
+
+  $(function(){
+    loadManifest().done(load);
+  });
+
+  // $(function(){
+  // 	loadManifest().done(function(data){
+  // 		console.log(data);
+  // 	});
+  // });
+
+  function load(){
+    return $.ajax({
+      url: App.baseUrl + '/api/dataElements.json'
+    }).done(function(data){
+      const $dataElements = $('#dataElements');
+
+      $.each(data.dataElements, function(idx, item){
+        const text = item.name + '(' + item.id + ')';
+        $('<li/>').text(text).appendTo($dataElements);
+      })
+    });
+  }
+</script>
+</body>
+</html>

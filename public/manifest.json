@@ -1,0 +1,23 @@
+{
+  "version": "0.1",
+  "name": "delta",
+  "description": "delta",
+  "launch_path": "/index.html",
+  "appType": "APP",
+  "icons": {
+    "16": null,
+    "48": "/img/icons/play-btn.png",
+    "128": null
+  },
+  "developer": {
+    "name": "cpu-mmust",
+    "url": ""
+  },
+  "default_locale": "en",
+  "activities": {
+    "dhis": {
+      "href": "*",
+      "namespace": "delta"
+    }
+  }
+}
